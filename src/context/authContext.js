@@ -10,12 +10,25 @@ const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
 	const [user, setUser] = useState(false);
+	const [items, setItems] = useState(null);
 
 	useEffect(() => {
 		if (getLocalStorage()) {
 			setUser(true);
 		}
 	}, [user]);
+
+	useEffect(() => {
+		const fetchCourseItem = async () => {
+			try {
+				const res = await authAPI.getCourseItem();
+				setItems(res.data.item);
+			} catch (err) {
+				console.log('Fetch Item Error');
+			}
+		};
+		fetchCourseItem();
+	}, []);
 
 	const register = async (input) => {
 		const res = await authAPI.register(input);
@@ -35,7 +48,7 @@ function AuthContextProvider({ children }) {
 	};
 
 	return (
-		<AuthContext.Provider value={{ register, login, logout, user }}>
+		<AuthContext.Provider value={{ register, login, logout, user, items }}>
 			{children}
 		</AuthContext.Provider>
 	);

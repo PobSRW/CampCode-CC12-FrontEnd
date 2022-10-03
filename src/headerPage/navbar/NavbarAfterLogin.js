@@ -20,7 +20,7 @@ function NavbarAfterLogin() {
 						<Link to='#'>My Learning</Link>
 					</li>
 					<button>
-						<i class='fa-solid fa-cart-shopping'></i>
+						<i className='fa-solid fa-cart-shopping'></i>
 					</button>
 					<button onClick={logout}>Log out</button>
 				</ul>
