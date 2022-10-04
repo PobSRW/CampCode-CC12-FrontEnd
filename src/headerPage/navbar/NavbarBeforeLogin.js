@@ -8,8 +8,8 @@ function NavbarBeforeLogin() {
 	const [openloginModal, setOpenLoginModal] = useState(false);
 	return (
 		<div className='flex items-center justify-between h-[60px] px-[200px] bg-zinc-800 text-white'>
-			<div>
-				<Link to='/'>CampCode</Link>
+			<div className='text-2xl font-bold'>
+				<Link to='/'>CampCode ...</Link>
 			</div>
 			<div className='flex'>
 				<ul className='flex gap-6 mx-6 items-center'>

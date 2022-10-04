@@ -6,13 +6,15 @@ import PoppularCourse from './PoppularCourse';
 
 function HomePage() {
 	return (
-		<div>
-			<Hightlight />
-			<PoppularCourse />
-			<NewCourse />
-			<MeetMentor />
+		<>
+			<div className='mb-10'>
+				<Hightlight />
+				<PoppularCourse />
+				<NewCourse />
+				<MeetMentor />
+			</div>
 			<Footer />
-		</div>
+		</>
 	);
 }
 

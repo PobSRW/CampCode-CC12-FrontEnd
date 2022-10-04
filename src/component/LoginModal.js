@@ -13,9 +13,13 @@ function LoginModal({ openModal, closeModal }) {
 	};
 
 	const handleClickSubmit = async (e) => {
-		e.preventDefault();
-		login(loginState);
-		closeModal();
+		try {
+			e.preventDefault();
+			login(loginState);
+			closeModal();
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	if (!openModal) {

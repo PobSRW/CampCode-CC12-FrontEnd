@@ -6,13 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.css';
 import AuthContextProvider from './context/authContext';
+import CourseContextProvider from './context/courseContext';
+import InstructorContextProvider from './context/instructorContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<AuthContextProvider>
-				<App />
+				<CourseContextProvider>
+					<InstructorContextProvider>
+						<App />
+					</InstructorContextProvider>
+				</CourseContextProvider>
 			</AuthContextProvider>
 		</BrowserRouter>
 	</React.StrictMode>
