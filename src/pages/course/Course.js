@@ -5,6 +5,7 @@ import CourseItem from './CourseItem';
 
 function Course() {
 	const { courses } = useCourseContext();
+
 	return (
 		<>
 			<div className='px-[200px]'>
@@ -18,6 +19,11 @@ function Course() {
 							price={course.priceCurrent}
 							courseName={course.courseName}
 							image={course.courseImage}
+							id={course.id}
+							description={course.description}
+							instructorId={course.instructorId}
+							instructorFirstName={course.Instructor.firstName}
+							instructorLastName={course.Instructor.lastName}
 						/>
 					))}
 					<CourseItem />

@@ -6,6 +6,7 @@ import {
 	removeLocalStorage,
 } from '../utils/localStorage';
 import jwt from 'jwt-decode';
+// import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -13,6 +14,8 @@ function AuthContextProvider({ children }) {
 	const [user, setUser] = useState(false);
 	const [userData, setUserData] = useState({});
 	const [isAdmin, setIsAdmin] = useState(false);
+
+	// const navigate = useNavigate();
 
 	useEffect(() => {
 		if (getLocalStorage()) {

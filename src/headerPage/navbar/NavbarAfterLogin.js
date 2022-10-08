@@ -19,7 +19,7 @@ function NavbarAfterLogin() {
 				<Link to='/'>CampCode ...</Link>
 			</div>
 			<div className='flex'>
-				<ul className='flex gap-6 mx-6 items-center'>
+				<ul className='flex gap-4 mx-6 items-center'>
 					<li>
 						<Link to='/course'>Course</Link>
 					</li>
@@ -33,7 +33,7 @@ function NavbarAfterLogin() {
 							</li>
 							<button>
 								<Link to='/cart'>
-									<i className='fa-solid fa-cart-shopping'></i>
+									<i className='fa-solid fa-cart-shopping px-3'></i>
 								</Link>
 							</button>
 						</>
@@ -60,7 +60,7 @@ function NavbarAfterLogin() {
 									!toggleButton ? 'hidden' : ''
 								} absolute z-50 top-12 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 right-6`}
 							>
-								<div className='py-3 px-4'>
+								<div className='py-3 px-4 cursor-default'>
 									<h1 className='block text-sm text-gray-900 dark:text-white cursor-auto'>
 										{firstName} {lastName}
 									</h1>

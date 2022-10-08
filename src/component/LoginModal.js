@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useAuthContext } from '../context/authContext';
+import { validateLogin } from '../validation/validateUser';
 
 function LoginModal({ openModal, closeModal }) {
 	const { login } = useAuthContext();
@@ -13,8 +15,15 @@ function LoginModal({ openModal, closeModal }) {
 	};
 
 	const handleClickSubmit = async (e) => {
+		e.preventDefault();
+
+		const { error } = validateLogin(loginState);
+
+		if (error) {
+			return toast.error(error.message);
+		}
+
 		try {
-			e.preventDefault();
 			login(loginState);
 			closeModal();
 		} catch (err) {

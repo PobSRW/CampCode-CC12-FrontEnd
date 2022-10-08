@@ -5,9 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.css';
+import 'react-toastify/dist/ReactToastify.css';
 import AuthContextProvider from './context/authContext';
 import CourseContextProvider from './context/courseContext';
 import InstructorContextProvider from './context/instructorContext';
+import CartContextProvider from './context/cartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,7 +18,9 @@ root.render(
 			<AuthContextProvider>
 				<CourseContextProvider>
 					<InstructorContextProvider>
-						<App />
+						<CartContextProvider>
+							<App />
+						</CartContextProvider>
 					</InstructorContextProvider>
 				</CourseContextProvider>
 			</AuthContextProvider>

@@ -8,7 +8,7 @@ import HomePage from '../pages/homePage/HomePage';
 import MyLearning from '../pages/myLearning/MyLearning';
 import PageNotFound from '../pages/notFound/PageNotFound';
 import ShoppingCart from '../pages/shoppingCart/ShoppingCart';
-import CreateCourse from '../pages/admin/CreateCourse';
+import CreateCourse from '../pages/createCourse/CreateCourse';
 
 function Router() {
 	const { user, isAdmin } = useAuthContext();

@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useAuthContext } from '../context/authContext';
+import { validateRegister } from '../validation/validateUser';
 
 function RegisterModal({ openModal, closeModal }) {
 	const { register } = useAuthContext();
@@ -18,8 +20,15 @@ function RegisterModal({ openModal, closeModal }) {
 	};
 
 	const handleSubmitForm = async (e) => {
+		e.preventDefault();
+
+		const { error } = validateRegister(input);
+
+		if (error) {
+			return toast.error(error.message);
+		}
+
 		try {
-			e.preventDefault();
 			register(input);
 			closeModal();
 		} catch (err) {
