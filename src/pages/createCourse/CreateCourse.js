@@ -4,7 +4,8 @@ import { useInstructorsContext } from '../../context/instructorContext';
 import { useCourseContext } from '../../context/courseContext';
 
 function CreateCourse() {
-	const { createCourse } = useCourseContext();
+	const { createCourse, fetchCourseItem, fetchNewCourseItem } =
+		useCourseContext();
 	const { instructors } = useInstructorsContext();
 
 	const [createCourseData, setCreateCourseData] = useState({
@@ -23,9 +24,8 @@ function CreateCourse() {
 		});
 	};
 
-	const handleClickSubmit = async (e) => {
+	const handleClickSubmit = async () => {
 		try {
-			e.preventDefault();
 			const formData = new FormData();
 			formData.append('courseName', createCourseData.courseName.toUpperCase());
 			formData.append('description', createCourseData.description);
@@ -33,6 +33,8 @@ function CreateCourse() {
 			formData.append('instructorId', createCourseData.instructorId);
 			formData.append('courseImage', image);
 			await createCourse(formData);
+			await fetchCourseItem();
+			await fetchNewCourseItem();
 		} catch (err) {
 			console.log(err);
 		}

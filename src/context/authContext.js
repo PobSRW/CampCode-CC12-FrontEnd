@@ -56,6 +56,7 @@ function AuthContextProvider({ children }) {
 		addLocalStorage(res.data.token);
 		setUser(true);
 		setUserData(userData);
+		console.log(userData);
 	};
 
 	const logout = async () => {

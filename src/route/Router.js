@@ -9,6 +9,7 @@ import MyLearning from '../pages/myLearning/MyLearning';
 import PageNotFound from '../pages/notFound/PageNotFound';
 import ShoppingCart from '../pages/shoppingCart/ShoppingCart';
 import CreateCourse from '../pages/createCourse/CreateCourse';
+import Checkout from '../pages/checkout/Checkout';
 
 function Router() {
 	const { user, isAdmin } = useAuthContext();
@@ -29,6 +30,7 @@ function Router() {
 						<Route>
 							<Route path='/cart' element={<ShoppingCart />} />
 							<Route path='/mylearning' element={<MyLearning />} />
+							<Route path='/checkout' element={<Checkout />} />
 							<Route path='*' element={<PageNotFound />} />
 						</Route>
 					)}

@@ -1,11 +1,10 @@
 import Footer from '../footer/Footer';
 import CartItem from './CartItem';
 import { useCartContext } from '../../context/cartContext';
+import { Link } from 'react-router-dom';
 
 function ShoppingCart() {
-	const { cartItems } = useCartContext();
-
-	const totalprice = cartItems.reduce((acc, item) => acc + item.price, 0);
+	const { cartItems, totalprice } = useCartContext();
 
 	return (
 		<>
@@ -34,7 +33,7 @@ function ShoppingCart() {
 								/>
 							))}
 							<div className='flex justify-end'>
-								<div className=' w-[390px] h-[180px] rounded-3xl bg-stone-200 '>
+								<div className=' w-[390px] h-[180px] rounded-lg bg-stone-200 '>
 									<div className='mt-5 px-5'>
 										<h1 className=' text-4xl font-bold '>
 											Subtotal : {totalprice} Baht
@@ -42,9 +41,11 @@ function ShoppingCart() {
 										<h2>Included taxes</h2>
 									</div>
 									<div className='flex justify-center '>
-										<button className='bg-blue-400 w-[350px] h-[40px] rounded-2xl text-2xl font-bold text-gray-100 mt-6'>
-											Check Out
-										</button>
+										<Link to='/checkout'>
+											<button className='bg-blue-400 w-[350px] h-[40px] rounded-2xl text-2xl font-bold text-gray-100 mt-6'>
+												Check Out
+											</button>
+										</Link>
 									</div>
 								</div>
 							</div>

@@ -1,8 +1,10 @@
 import { createContext, useContext, useState } from 'react';
+import * as cartApi from '../api/cartApi';
 
 const CartContext = createContext();
 
 function CartContextProvider({ children }) {
+	const [slipImage, setSlipImage] = useState('');
 	const [cartItems, setCartItems] = useState([]);
 
 	const addItemToCart = (data) => {
@@ -14,9 +16,24 @@ function CartContextProvider({ children }) {
 		setCartItems(cartItemFilter);
 	};
 
+	const totalprice = cartItems.reduce((acc, item) => acc + item.price, 0);
+
+	const checkout = async (paymentData) => {
+		await cartApi.checkout(paymentData);
+	};
+
 	return (
 		<CartContext.Provider
-			value={{ addItemToCart, cartItems, setCartItems, removeCartItem }}
+			value={{
+				addItemToCart,
+				cartItems,
+				setCartItems,
+				removeCartItem,
+				totalprice,
+				checkout,
+				setSlipImage,
+				slipImage,
+			}}
 		>
 			{children}
 		</CartContext.Provider>
