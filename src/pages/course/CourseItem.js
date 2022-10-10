@@ -65,18 +65,22 @@ function CourseItem({
 			) : (
 				''
 			)}
-			<img
-				className='rounded-t-2xl'
-				alt='Course'
-				src={
-					image ||
-					'https://p4.wallpaperbetter.com/wallpaper/153/716/917/anime-original-animal-ears-black-hair-computer-hd-wallpaper-preview.jpg'
-				}
-			/>
+			<div className='w-[256px] h-[210px] flex justify-center '>
+				<img
+					className='rounded-t-2xl  min-w-full'
+					alt='Course'
+					src={
+						image ||
+						'https://p4.wallpaperbetter.com/wallpaper/153/716/917/anime-original-animal-ears-black-hair-computer-hd-wallpaper-preview.jpg'
+					}
+				/>
+			</div>
 			<h1 className='mt-2'>{courseName}</h1>
-			<h2>Instructor</h2>
+			<h2>
+				{instructorFirstName} {instructorLastName}
+			</h2>
 			<div className=''>
-				<h3>B{price}</h3>
+				<h3>{price} Baht</h3>
 				<button
 					className='bg-pink-500 w-[160px] h-[45px]'
 					onClick={() =>

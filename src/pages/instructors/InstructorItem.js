@@ -1,10 +1,10 @@
 function InstructorItem({ firstName, lastName, reviewScore, profileImage }) {
 	return (
 		<div>
-			<div className='flex w-[530px] h-[280px] bg-slate-200 my-3 rounded-xl border-[4px] border-slate-800 shadow-lg'>
-				<div className='rounded-l-xl w-1/2 p-[10px] mt-[6px]'>
+			<div className='flex w-[530px] h-[280px] bg-slate-200 my-3  shadow-lg '>
+				<div className='rounded-l-xl w-1/2 p-[10px]  h-[280px] overflow-hidden'>
 					<img
-						className='rounded-full border-[4px] border-slate-800 '
+						className=' border-[4px] border-slate-800 min-w-full min-h-full '
 						alt='instructor'
 						src={
 							profileImage ||

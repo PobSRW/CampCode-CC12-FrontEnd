@@ -10,6 +10,8 @@ import PageNotFound from '../pages/notFound/PageNotFound';
 import ShoppingCart from '../pages/shoppingCart/ShoppingCart';
 import CreateCourse from '../pages/createCourse/CreateCourse';
 import Checkout from '../pages/checkout/Checkout';
+import ConfirmPayment from '../pages/confirmPayment/ConfirmPayment';
+import LearningCourse from '../pages/myLearning/LearningCourse';
 
 function Router() {
 	const { user, isAdmin } = useAuthContext();
@@ -25,12 +27,14 @@ function Router() {
 					{isAdmin ? (
 						<Route>
 							<Route path='/createcourse' element={<CreateCourse />} />
+							<Route path='/confirmpayment' element={<ConfirmPayment />} />
 						</Route>
 					) : (
 						<Route>
 							<Route path='/cart' element={<ShoppingCart />} />
 							<Route path='/mylearning' element={<MyLearning />} />
 							<Route path='/checkout' element={<Checkout />} />
+							<Route path='/course/:courseid' element={<LearningCourse />} />
 							<Route path='*' element={<PageNotFound />} />
 						</Route>
 					)}

@@ -16,6 +16,7 @@ function CreateCourse() {
 	});
 
 	const [image, setImage] = useState('');
+	const [video, setVideo] = useState('');
 
 	const handleOnChange = (e) => {
 		setCreateCourseData({
@@ -32,6 +33,7 @@ function CreateCourse() {
 			formData.append('priceCurrent', createCourseData.price);
 			formData.append('instructorId', createCourseData.instructorId);
 			formData.append('courseImage', image);
+			formData.append('courseVideo', video);
 			await createCourse(formData);
 			await fetchCourseItem();
 			await fetchNewCourseItem();
@@ -95,10 +97,17 @@ function CreateCourse() {
 								}}
 							/>
 						</div>
-						{/* <div className='flex gap-5 h-[40px] items-center bg-slate-300 rounded-xl p-4'>
+						<div className='flex gap-5 h-[40px] items-center bg-slate-300 rounded-xl p-4'>
 							<h1 className='text-gray-600'> Course Video : </h1>
-							<input type='file' id='courseImage' />
-						</div> */}
+							<input
+								type='file'
+								id='courseVideo'
+								name='courseVideo'
+								onChange={(e) => {
+									setVideo(e.target.files[0]);
+								}}
+							/>
+						</div>
 						<button
 							className='h-[40px] text-2xl bg-blue-500 rounded-xl text-gray-50'
 							onClick={handleClickSubmit}

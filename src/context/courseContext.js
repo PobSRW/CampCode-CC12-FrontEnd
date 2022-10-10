@@ -1,12 +1,15 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import * as courseApi from '../api/courseApi';
+import { useAuthContext } from './authContext';
 
 const CourseContext = createContext();
 
 function CourseContextProvider({ children }) {
+	const { user } = useAuthContext();
 	const [courses, setCourses] = useState(null);
 	const [newCourses, setNewCourses] = useState(null);
 	const [courseById, setCourseById] = useState(null);
+	const [userCourses, setUserCourses] = useState('');
 
 	const fetchCourseItem = async () => {
 		try {
@@ -33,6 +36,15 @@ function CourseContextProvider({ children }) {
 			// console.log(res.data.itemById);
 		} catch (err) {
 			console.log('Fetch Course By Id Error');
+		}
+	};
+
+	const fetchUserCourse = async () => {
+		try {
+			const res = await courseApi.getCourseUser();
+			setUserCourses(res.data.userCourse);
+		} catch (err) {
+			console.log('Fetch fetchUserCourse Error');
 		}
 	};
 
@@ -65,7 +77,10 @@ function CourseContextProvider({ children }) {
 	useEffect(() => {
 		fetchCourseItem();
 		fetchNewCourseItem();
-	}, []);
+		if (user) {
+			fetchUserCourse();
+		}
+	}, [user]);
 
 	return (
 		<CourseContext.Provider
@@ -79,6 +94,7 @@ function CourseContextProvider({ children }) {
 				courseById,
 				fetchCourseItemById,
 				fetchCourseItem,
+				userCourses,
 			}}
 		>
 			{children}

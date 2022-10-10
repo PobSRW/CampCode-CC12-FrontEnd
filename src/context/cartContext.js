@@ -1,11 +1,14 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import * as cartApi from '../api/cartApi';
+import { useAuthContext } from './authContext';
 
 const CartContext = createContext();
 
 function CartContextProvider({ children }) {
+	const { isAdmin } = useAuthContext();
 	const [slipImage, setSlipImage] = useState('');
 	const [cartItems, setCartItems] = useState([]);
+	const [orders, setOrders] = useState('');
 
 	const addItemToCart = (data) => {
 		setCartItems((prev) => [...prev, data]);
@@ -22,6 +25,39 @@ function CartContextProvider({ children }) {
 		await cartApi.checkout(paymentData);
 	};
 
+	const fetchOrders = async () => {
+		try {
+			const res = await cartApi.getConfirmOrder();
+			// console.log(res.data.order);
+
+			setOrders(res.data.order);
+		} catch (err) {
+			console.log('Fetch Orders Error');
+		}
+	};
+
+	const updateOrderStatus = async (orderId) => {
+		try {
+			await cartApi.updateOrderStatus(orderId);
+		} catch (err) {
+			console.log('Update OrderStatus Error');
+		}
+	};
+
+	const bindingUserCourse = async (userId, courses) => {
+		try {
+			await cartApi.bindingUserCourse(userId, courses);
+		} catch (err) {
+			console.log('Update bindingUserCourse Error');
+		}
+	};
+
+	useEffect(() => {
+		if (isAdmin) {
+			fetchOrders();
+		}
+	}, [isAdmin]);
+
 	return (
 		<CartContext.Provider
 			value={{
@@ -33,6 +69,10 @@ function CartContextProvider({ children }) {
 				checkout,
 				setSlipImage,
 				slipImage,
+				orders,
+				updateOrderStatus,
+				fetchOrders,
+				bindingUserCourse,
 			}}
 		>
 			{children}

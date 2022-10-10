@@ -21,6 +21,7 @@ function UpdateModal({
 	});
 
 	const [image, setImage] = useState('');
+	const [video, setVideo] = useState('');
 
 	const handleOnChange = (e) => {
 		setData({
@@ -38,6 +39,9 @@ function UpdateModal({
 			formData.append('instructorId', data.instructorId);
 			if (image) {
 				formData.append('courseImage', image);
+			}
+			if (video) {
+				formData.append('courseVideo', video);
 			}
 
 			await onUpdateCourse(id, formData);
@@ -160,7 +164,13 @@ function UpdateModal({
 						</div>
 						<div className='flex gap-5 h-[40px] items-center bg-slate-300 rounded-xl p-4 mt-4'>
 							<h1 className='text-black font-bold'> Course Video : </h1>
-							<input type='file' id='courseImage' />
+							<input
+								type='file'
+								id='courseVideo'
+								onChange={(e) => {
+									setVideo(e.target.files[0]);
+								}}
+							/>
 						</div>
 					</div>
 					<div className='mt-5 gap-5 flex justify-center'>
